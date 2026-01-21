@@ -103,7 +103,7 @@ const RESUME = {
       title: "Quantum Cybersec",
       subtitle: "M. Tech Dissertation",
       desc: "Investigated convergence of classical AI, Quantum ML, and PQC. Benchmarked algorithms (QSVM, VQC, qGAN).",
-      tech: "Python, TensorFlow, XGBoost", // Replaced IBM Qiskit with Python for icon availability
+      tech: "Python, TensorFlow, XGBoost", 
       size: "large"
     },
     {
@@ -192,8 +192,8 @@ const ROLES = [
 ];
 
 /* --- UTILS: ICON MAPPING --- */
-const getTechIcon = (techName) => {
-  const map = {
+const getTechIcon = (techName: string) => {
+  const map: Record<string, string> = {
     'c#': 'csharp',
     'c++': 'cplusplus',
     'next.js': 'nextdotjs',
@@ -308,7 +308,7 @@ const useMousePosition = () => {
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e) => setMousePosition({ x: e.clientX, y: e.clientY });
+    const updateMousePosition = (e: MouseEvent) => setMousePosition({ x: e.clientX, y: e.clientY });
     window.addEventListener('mousemove', updateMousePosition);
     return () => window.removeEventListener('mousemove', updateMousePosition);
   }, []);
@@ -318,8 +318,8 @@ const useMousePosition = () => {
 
 const useAmbientSound = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioContext = useRef(null);
-  const oscillators = useRef([]);
+  const audioContext = useRef<AudioContext | null>(null);
+  const oscillators = useRef<OscillatorNode[]>([]);
 
   const toggleSound = () => {
     if (isPlaying) {
@@ -329,10 +329,11 @@ const useAmbientSound = () => {
       audioContext.current = null;
       setIsPlaying(false);
     } else {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const AudioContext = (window as any).AudioContext || (window as any).webkitAudioContext;
       audioContext.current = new AudioContext();
       
-      const createOsc = (freq, type, vol, pan) => {
+      const createOsc = (freq: number, type: OscillatorType, vol: number, pan: number) => {
+        if (!audioContext.current) return null;
         const osc = audioContext.current.createOscillator();
         const gain = audioContext.current.createGain();
         const panner = audioContext.current.createStereoPanner();
@@ -349,9 +350,13 @@ const useAmbientSound = () => {
         return osc;
       };
 
-      oscillators.current.push(createOsc(130.81, 'sine', 0.05, -0.5)); 
-      oscillators.current.push(createOsc(155.56, 'sine', 0.03, 0.5));  
-      oscillators.current.push(createOsc(196.00, 'triangle', 0.02, 0)); 
+      const osc1 = createOsc(130.81, 'sine', 0.05, -0.5); 
+      const osc2 = createOsc(155.56, 'sine', 0.03, 0.5);  
+      const osc3 = createOsc(196.00, 'triangle', 0.02, 0);
+      
+      if (osc1) oscillators.current.push(osc1);
+      if (osc2) oscillators.current.push(osc2);
+      if (osc3) oscillators.current.push(osc3);
       
       setIsPlaying(true);
     }
@@ -361,7 +366,7 @@ const useAmbientSound = () => {
 };
 
 // Typewriter Hook
-const useTypewriter = (words, typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000) => {
+const useTypewriter = (words: string[], typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000) => {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
@@ -397,11 +402,11 @@ const useTypewriter = (words, typingSpeed = 100, deletingSpeed = 50, pauseTime =
   return text;
 };
 
-const useAIResponse = (query) => {
-  const [response, setResponse] = useState(null);
+const useAIResponse = (query: string) => {
+  const [response, setResponse] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const ask = (q) => {
+  const ask = (q: string) => {
     setLoading(true);
     const lowerQ = q.toLowerCase();
     
@@ -432,60 +437,76 @@ const useAIResponse = (query) => {
 
 /* --- SUB-COMPONENTS --- */
 
-const TechBadge = ({ tech }) => (
+const TechBadge = ({ tech }: { tech: string }) => (
   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-950/50 border border-slate-800 text-slate-300 hover:text-white hover:border-white/30 hover:scale-105 transition-all duration-300 cursor-default group">
     <img 
       src={getTechIcon(tech)} 
       alt={tech} 
       className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity"
-      onError={(e) => { e.target.style.display = 'none'; }} 
+      onError={(e: any) => { e.target.style.display = 'none'; }} 
     />
     {tech}
   </span>
 );
 
 const WebGLBackground = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationFrameIdRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    // 1. Get Context
     const gl = canvas.getContext('webgl');
-    if (!gl) return;
+    if (!gl) {
+      console.error('WebGL not supported');
+      return;
+    }
 
-    let program;
-    let positionAttributeLocation;
-    let timeUniformLocation;
-    let resolutionUniformLocation;
-    let mouseUniformLocation;
-    let buffer;
+    let program: WebGLProgram | null = null;
+    let positionAttributeLocation: number;
+    let timeUniformLocation: WebGLUniformLocation | null;
+    let resolutionUniformLocation: WebGLUniformLocation | null;
+    let mouseUniformLocation: WebGLUniformLocation | null;
+    let buffer: WebGLBuffer | null;
 
-    const createShader = (gl, type, source) => {
+    // 2. Helpers
+    const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
       const shader = gl.createShader(type);
+      if (!shader) return null;
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
       if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error('Shader compile error:', gl.getShaderInfoLog(shader));
         gl.deleteShader(shader);
         return null;
       }
       return shader;
     };
 
-    const createProgram = (gl, vertexShader, fragmentShader) => {
-      const program = gl.createProgram();
-      gl.attachShader(program, vertexShader);
-      gl.attachShader(program, fragmentShader);
-      gl.linkProgram(program);
-      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        gl.deleteProgram(program);
+    const createProgram = (gl: WebGLRenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader) => {
+      const prog = gl.createProgram();
+      if (!prog) return null;
+      gl.attachShader(prog, vertexShader);
+      gl.attachShader(prog, fragmentShader);
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+        console.error('Program link error:', gl.getProgramInfoLog(prog));
+        gl.deleteProgram(prog);
         return null;
       }
-      return program;
+      return prog;
     };
 
+    // 3. Init
     const init = () => {
       const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
       const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+      if (!vertexShader || !fragmentShader) return;
+      
       program = createProgram(gl, vertexShader, fragmentShader);
+      if (!program) return;
 
       positionAttributeLocation = gl.getAttribLocation(program, "position");
       timeUniformLocation = gl.getUniformLocation(program, "time");
@@ -506,21 +527,30 @@ const WebGLBackground = () => {
     let mouseX = 0;
     let mouseY = 0;
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = canvas.height - e.clientY;
     };
     window.addEventListener('mousemove', handleMouseMove);
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+      // Handle High DPI
+      const realToCSSPixels = window.devicePixelRatio;
+      const displayWidth  = Math.floor(window.innerWidth * realToCSSPixels);
+      const displayHeight = Math.floor(window.innerHeight * realToCSSPixels);
+
+      if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+        canvas.width  = displayWidth;
+        canvas.height = displayHeight;
+      }
+      gl.viewport(0, 0, canvas.width, canvas.height);
     };
     window.addEventListener('resize', resize);
     resize();
 
-    const render = (time) => {
+    // 4. Render Loop
+    const render = (time: number) => {
+      if (!program || !gl) return;
       gl.useProgram(program);
       gl.enableVertexAttribArray(positionAttributeLocation);
       gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -528,27 +558,32 @@ const WebGLBackground = () => {
 
       gl.uniform1f(timeUniformLocation, time * 0.001);
       gl.uniform2f(resolutionUniformLocation, canvas.width, canvas.height);
-      gl.uniform2f(mouseUniformLocation, mouseX, mouseY);
+      gl.uniform2f(mouseUniformLocation, mouseX * window.devicePixelRatio, mouseY * window.devicePixelRatio);
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      requestAnimationFrame(render);
+      animationFrameIdRef.current = requestAnimationFrame(render);
     };
 
-    requestAnimationFrame(render);
+    // Start Loop
+    animationFrameIdRef.current = requestAnimationFrame(render);
 
+    // 5. Cleanup
     return () => {
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
+      if (animationFrameIdRef.current) {
+        cancelAnimationFrame(animationFrameIdRef.current);
+      }
     };
   }, []);
 
   return <canvas ref={canvasRef} className="fixed inset-0 w-full h-full z-0 opacity-40 pointer-events-none" />;
 };
 
-const TiltCard = ({ children, className = "", onClick }) => {
-  const cardRef = useRef(null);
+const TiltCard = ({ children, className = "", onClick }: { children: React.ReactNode, className?: string, onClick?: () => void }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
     const card = cardRef.current;
     if (!card) return;
     const rect = card.getBoundingClientRect();
@@ -595,8 +630,8 @@ const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([{ type: 'bot', text: "Hello! I'm Rama's AI Assistant. Ask me anything about his skills, experience, or quantum research." }]);
   const [input, setInput] = useState("");
-  const { ask, response, loading } = useAIResponse();
-  const messagesEndRef = useRef(null);
+  const { ask, response, loading } = useAIResponse("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (response) {
