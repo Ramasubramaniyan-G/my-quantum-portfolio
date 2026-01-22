@@ -100,7 +100,7 @@ export const RESUME: Resume = {
         "Developed and trained AI/ML & NLP models for HR solutions to rank resumes.",
         "Trained models on hundreds of resumes to identify best candidates based on job descriptions.",
         "Created a web application with an HR dashboard for applicant monitoring.",
-        "Tech Stack: Python, Django, React, FastAPI, Pandas, NumPy, scikit-learn, PyTorch"
+        "Tech Stack: Python, Django, React, FastAPI, Pandas, NumPy, scikit-learn, PyTorch, LLMs, Spacy"
       ]
     },
     {
