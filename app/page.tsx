@@ -281,11 +281,11 @@ export default function Portfolio() {
                           project.title.includes('Quantum') ? <Cpu size={24} /> :
                             <Code size={24} />}
                       </div>
-                      {project.link && (
-                        <a href={`${project.link}`} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 text-slate-600 hover:text-white hover:bg-purple-500 transition-all duration-300">
+                      {project.links && project.links.length > 0 && project.links.map((projectLink, linkIdx) => (
+                        <a key={linkIdx} href={`${projectLink}`} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 text-slate-600 hover:text-white hover:bg-purple-500 transition-all duration-300">
                           <ExternalLink size={20} className="text-slate-600 group-hover:text-white transition-colors" />
                         </a>
-                      )}
+                      ))}
                     </div>
 
                     <h3 className="text-2xl font-bold text-white mb-1 group-hover:translate-x-1 transition-transform">{project.title}</h3>
@@ -395,7 +395,7 @@ export default function Portfolio() {
                 </div>
               </TiltCard>
 
-              <TiltCard className="bg-slate-900/40 border border-slate-800/50 rounded-2xl p-8 hover:bg-slate-800/50">              
+              <TiltCard className="bg-slate-900/40 border border-slate-800/50 rounded-2xl p-8 hover:bg-slate-800/50">
                 <div className="flex gap-4">
                   <BookOpen className="text-blue-400 flex-shrink-0 -ml-2" size={24} />
                   <div>
