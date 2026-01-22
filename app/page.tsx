@@ -281,7 +281,11 @@ export default function Portfolio() {
                           project.title.includes('Quantum') ? <Cpu size={24} /> :
                             <Code size={24} />}
                       </div>
-                      <ExternalLink size={20} className="text-slate-600 group-hover:text-white transition-colors" />
+                      {project.link && (
+                        <a href={`${project.link}`} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 text-slate-600 hover:text-white hover:bg-purple-500 transition-all duration-300">
+                          <ExternalLink size={20} className="text-slate-600 group-hover:text-white transition-colors" />
+                        </a>
+                      )}
                     </div>
 
                     <h3 className="text-2xl font-bold text-white mb-1 group-hover:translate-x-1 transition-transform">{project.title}</h3>
@@ -391,15 +395,22 @@ export default function Portfolio() {
                 </div>
               </TiltCard>
 
-              <TiltCard className="bg-gradient-to-r from-blue-500/10 to-transparent border border-blue-500/20 rounded-2xl p-6">
+              <TiltCard className="bg-slate-900/40 border border-slate-800/50 rounded-2xl p-8 hover:bg-slate-800/50">              
                 <div className="flex gap-4">
-                  <BookOpen className="text-blue-400 flex-shrink-0" size={24} />
+                  <BookOpen className="text-blue-400 flex-shrink-0 -ml-2" size={24} />
                   <div>
-                    <h3 className="text-lg font-bold text-white">Published Researcher</h3>
-                    <p className="text-sm text-slate-400 mt-2 leading-relaxed">
-                      JCCE 2025: "A Hybrid Framework Integrating QML, AI, and Quantum-Safe Cryptography".
+                    <h3 className="text-xl font-bold text-white">Published Researcher</h3>
+                    <p className="text-cyan-400 font-medium mt-1">Journal of Computational and Cognitive Engineering</p>
+                    <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                      Proposes a hybrid cybersecurity framework merging Quantum Machine Learning (QML) with the BB84 QKD protocol. Achieved <span className="text-white font-bold">97.75% accuracy</span> in phishing detection using Quantum Support Vector Classifiers (QSVC).
                     </p>
                   </div>
+                  <span className="text-sm font-mono text-slate-500">Sep 2025</span>
+                </div>
+                <div className="mt-4 flex items-center gap-4">
+                  <a href="https://doi.org/10.47852/bonviewJCCE52025121" className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
+                    DOI: 10.47852/bonviewJCCE52025121
+                  </a>
                 </div>
               </TiltCard>
 

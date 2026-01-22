@@ -1,5 +1,6 @@
   export const simpleIcons: Record<string, string> = {
     'aws': 'amazonwebservices',
+    'bash': 'gnubash',
     'burp suite': 'burpsuite',
     'c#': 'csharp',
     'c++': 'cplusplus',
@@ -9,6 +10,7 @@
     'golang': 'go',
     'kalilinux': 'kalilinux',
     'linux admin': 'linux',
+    'mathematica': 'wolframmathematica',
     'next.js': 'nextdotjs',
     'node.js': 'nodedotjs',
     'postgresql': 'postgresql',
@@ -22,13 +24,13 @@
     'scikit-learn': 'scikitlearn',
     'spring boot': 'springboot',
     'unity3d': 'unity',
-    'wireshark': 'wireshark'
+    'wireshark': 'wireshark',
+    'zsh': 'zsh',
   };
 
 export const devIcons: Record<string, string> = {
   "AWS": "amazonwebservices",
   "Azure": "azure",
-  "Bash": "bash",
   "Batch": "windows11",
   "C#": "csharp",
   "Gitlab CI/CD": "gitlab",
@@ -41,7 +43,6 @@ export const devIcons: Record<string, string> = {
   "Tailwind": "tailwindcss",
   "TailwindCSS": "tailwindcss",
   "awk": "awk",
-  "zsh": "zsh",
 };
 
 export const deviconSuffix: Record<string, string> = {
@@ -57,7 +58,6 @@ export const explicitIcons: Record<string, string> = {
   "John the Ripper": "https://www.kali.org/tools/john/images/john-logo.svg",
   "LinPEAS": "https://www.kali.org/tools/peass-ng/images/peass-ng-logo.svg",
   "Maltego": "https://www.maltego.com/img/maltego-logo.svg",
-  "Mathematica": "https://upload.wikimedia.org/wikipedia/commons/2/20/Mathematica_Logo.svg",
   "NLTK": "https://www.scnsoft.com/technologies-logos/large-language-models/nltk.svg",
   "Nmap": "https://nmap.org/images/sitelogo-2x.png",
   "OWASP ZAP": "https://www.zaproxy.org/img/zap-by-checkmarx.svg",

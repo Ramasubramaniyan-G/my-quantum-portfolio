@@ -22,6 +22,7 @@ interface Project {
   desc: string;
   tech: string;
   size: "small" | "medium" | "large";
+  link: string;
 }
 
 interface Skills {
@@ -127,7 +128,8 @@ export const RESUME: Resume = {
       org: "DataTerrain Inc.",
       desc: "Python-based HR automation suite leveraging AI, ML, and NLP to streamline recruitment. Parses skills against job descriptions to rank candidates.",
       tech: "Python, Django, FastAPI, Pandas, PyTorch",
-      size: "large" 
+      size: "large",
+      link: "", 
     },
     {
       title: "Eidetic",
@@ -135,7 +137,8 @@ export const RESUME: Resume = {
       org: "Citibank",
       desc: "Cross-platform automation solution bridging test execution and Microfocus ALM. Enables bulk screenshot uploads and status updates.",
       tech: "Next.js, Python, Qt",
-      size: "medium"
+      size: "medium",
+      link: "",
     },
     {
       title: "Bulk Alert System",
@@ -143,14 +146,16 @@ export const RESUME: Resume = {
       org: "Citibank",
       desc: "Java/Spring Boot MVC app to automate validation of banking alerts across global markets.",
       tech: "Java, Spring Boot",
-      size: "small"
+      size: "medium",
+      link: "",
     },
     {
       title: "Quantum Cybersecurity",
       subtitle: "M. Tech Dissertation",
       desc: "Investigated convergence of classical AI, Quantum ML, and PQC. Benchmarked algorithms (QSVM, VQC, qGAN).",
       tech: "Python, TensorFlow, XGBoost", 
-      size: "large"
+      size: "large",
+      link: "https://doi.org/10.47852/bonviewJCCE52025121"
     },
     {
       title: "NIDS AI",
@@ -158,7 +163,8 @@ export const RESUME: Resume = {
       org: "M. Tech Project",
       desc: "AI-integrated NIDS using deep learning for adaptive, real-time protection against zero-day vulnerabilities.",
       tech: "Python, TensorFlow",
-      size: "medium"
+      size: "medium",
+      link: "",
     },
     {
       title: "Phishing Detection",
@@ -166,15 +172,17 @@ export const RESUME: Resume = {
       org: "M. Tech Project",
       desc: "Real-time systems employing deep learning and lexical analysis to identify malicious URLs.",
       tech: "Python, scikit-learn",
-      size: "medium"
+      size: "medium",
+      link: "",
     },
     {
       title: "Stroke Rehab",
       subtitle: "Unity 3D Gamification",
       org: "Dept of Science & Tech",
       desc: "Gamification project for stroke recovery. 3 Unity-based games integrated with a web portal.",
-      tech: "Unity, Java, Spring Boot",
-      size: "small"
+      tech: "Unity, Python, Django, Django REST Framework, C#, REST APIs, Bootstrap, JavaScript, jQuery",
+      size: "small",
+      link: "",
     },
     {
       title: "Chocolate",
@@ -182,7 +190,8 @@ export const RESUME: Resume = {
       org: "B.E. Project",
       desc: "Comprehensive social networking app with real-time messaging, privacy controls, and group management.",
       tech: "React, Node.js, MongoDB, Express",
-      size: "medium"
+      size: "medium",
+      link: "",
     },
     {
       title: "COVID-19 Tracker",
@@ -190,7 +199,8 @@ export const RESUME: Resume = {
       org: "B.E. Project",
       desc: "React-based geospatial dashboard tracking real-time COVID-19 stats using Johns Hopkins data.",
       tech: "React, Firebase",
-      size: "small"
+      size: "small",
+      link: "https://covid-19-tracker-d6142.web.app/",
     }
   ],
   skills: {
