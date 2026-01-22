@@ -21,7 +21,7 @@ export const useAIResponse = (query: string) => {
       } else if (lowerQ.includes('experience') || lowerQ.includes('work')) {
         answer = "He has 5 years of experience, currently at Q-Rounds Inc. dealing with HL7 data. Previously at Citicorp, he won an Innovation Award for automating workflow systems.";
       } else if (lowerQ.includes('project')) {
-        answer = "Key projects include an AI Resume Ranker, a Unity Stroke Rehab system, and a Quantum Cybersec framework.";
+        answer = "Key projects include an AI Resume Ranker, a Unity Stroke Rehab system, and a Quantum Cybersecurity framework.";
       } else {
         answer = "That's an interesting query. Based on his resume, Ramasubramaniyan is a problem solver with deep interests in Quantum Theory, AI, and Cybersecurity. Ask me about his projects or skills!";
       }

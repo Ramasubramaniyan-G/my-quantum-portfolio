@@ -144,7 +144,7 @@ export const RESUME = {
       size: "small"
     },
     {
-      title: "Quantum Cybersec",
+      title: "Quantum Cybersecurity",
       subtitle: "M. Tech Dissertation",
       desc: "Investigated convergence of classical AI, Quantum ML, and PQC. Benchmarked algorithms (QSVM, VQC, qGAN).",
       tech: "Python, TensorFlow, XGBoost", 
