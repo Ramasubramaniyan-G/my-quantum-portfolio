@@ -1,4 +1,4 @@
-export const vertexShaderSource = `
+export const vertexShaderSource: string = `
   attribute vec2 position;
   varying vec2 vUv;
   void main() {
@@ -7,7 +7,7 @@ export const vertexShaderSource = `
   }
 `;
 
-export const fragmentShaderSource = `
+export const fragmentShaderSource: string = `
   precision highp float;
   uniform float time;
   uniform vec2 resolution;
