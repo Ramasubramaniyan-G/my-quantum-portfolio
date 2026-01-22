@@ -55,7 +55,7 @@ interface Resume {
   certifications: Certification[];
 }
 
-export const RESUME = {
+export const RESUME: Resume = {
   profile: {
     name: "Ramasubramaniyan G",
     title: "Software Engineer | AI/ML & Full-Stack Specialist",
