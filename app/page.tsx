@@ -11,6 +11,7 @@ import {
   ChevronRight, Star, Music,
   Grid, Aperture, Trophy, Wrench, CloudCog, Terminal
 } from 'lucide-react';
+import { CIcon } from '@coreui/icons-react';
 
 /* --- RESUME DATA --- */
 import { RESUME } from '@lib/resume';
