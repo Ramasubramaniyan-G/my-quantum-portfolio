@@ -1,36 +1,19 @@
-import { icon_map } from '@/lib/icon_map';
-
-const exceptions: Record<string, string> = {
-  "C#": "csharp",
-  "Java": "java",
-  "AWS": "amazonwebservices",
-  "Azure": "azure",
-  "Tailwind CSS": "tailwindcss",
-  "Tailwind": "tailwindcss",
-  "TailwindCSS": "tailwindcss",
-};
-
-const deviconSuffix: Record<string, string> = {
-  "AWS": "-wordmark",
-}
+import { simpleIcons } from '@/lib/icon_map';
+import { devIcons, deviconSuffix } from '@/lib/icon_map';
 
 const getSimpleIcon = (techName: string) => {
   const normalized = techName.toLowerCase().trim();
-  if (exceptions[techName]) {
-    return exceptions[techName];
-  }
-  const slug = icon_map[normalized] || normalized.replace(/\s+/g, '').replace(/\./g, 'dot');
-  return techName !== "LLMs" ? `https://cdn.simpleicons.org/${slug}` : `https://cdn.simpleicons.org/probot` ;
+  const slug = simpleIcons[normalized] || normalized.replace(/\s+/g, '').replace(/\./g, 'dot');
+  return techName !== "LLMs" ? `https://cdn.simpleicons.org/${slug}` : `https://cdn.simpleicons.org/probot`;
 }
 
 const getDevIcon = (techName: string) => {
-  const normalized = techName.toLowerCase().trim();
-  const slug = exceptions[techName];
+  const slug = devIcons[techName];
   return `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${slug}/${slug}-original${techName in deviconSuffix ? deviconSuffix[techName] : ""}.svg`;
 }
 
 export const getTechIcon = (techName: string) => {
-  if (techName in exceptions) {
+  if (techName in devIcons) {
     return getDevIcon(techName);
   }
   return getSimpleIcon(techName);

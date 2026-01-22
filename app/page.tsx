@@ -1,13 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+
+/* --- ICONS --- */
 import {
   Github, Linkedin, Mail, Phone, ExternalLink,
   Code, Database, Cpu, Globe, BookOpen,
   Award, Briefcase, GraduationCap, Layers,
   Server, Shield, Brain, Menu, X,
   ChevronRight, Star, Music,
-  Grid, Aperture, Trophy
+  Grid, Aperture, Trophy, Wrench, CloudCog, Terminal
 } from 'lucide-react';
 
 /* --- RESUME DATA --- */
@@ -318,7 +320,9 @@ export default function Portfolio() {
               { title: "Frameworks", icon: Globe, color: "purple", skills: RESUME.skills.frameworks },
               { title: "AI & Data", icon: Brain, color: "emerald", skills: RESUME.skills.dataAI },
               { title: "Databases", icon: Database, color: "rose", skills: RESUME.skills.databases },
-              { title: "Infrastructure", icon: Server, color: "orange", skills: RESUME.skills.tools },
+              { title: "Tools", icon: Wrench, color: "orange", skills: RESUME.skills.tools },
+              { title: "DevOps & Cloud", icon: CloudCog, color: "yellow", skills: RESUME.skills.devOps },
+              { title: "Scripting & Academic", icon: Terminal, color: "yellow", skills: RESUME.skills.sciptingAndMath },
               { title: "Security", icon: Shield, color: "blue", skills: RESUME.skills.security }
             ].map((group, idx) => (
               <TiltCard key={idx} className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-2xl p-6 hover:border-white/20">

@@ -31,6 +31,8 @@ interface Skills {
   databases: string[];
   tools: string[];
   security: string[];
+  devOps: string[];
+  sciptingAndMath: string[];
 }
 
 interface Education {
@@ -114,7 +116,7 @@ export const RESUME: Resume = {
         "Created a CLI tool for validating customer financial records and alerts.",
         "Developed cryptographic services for secure data exchange.",
         "Received 'Innovation Award' for single-handedly developing the workflow system.",
-        "Tech Stack: Next.js, TypeScript, Java, Spring Boot, Python, NestJS, Node.js, Tailwind, Redux"
+        "Tech Stack: Next.js, TypeScript, Java, Spring Boot, Python, PyQt, NestJS, Node.js, Tailwind, Redux"
       ]
     }
   ],
@@ -193,11 +195,13 @@ export const RESUME: Resume = {
   ],
   skills: {
     languages: ["Python", "Ruby", "Rust", "Java", "C#", "C++", "TypeScript", "JavaScript", "Go", "Perl"],
-    frameworks: ["Next.js", "React", "Svelte", "Angular", "Django", "NestJS", "Spring Boot", "FastAPI", "Rails", "GraphQL"],
-    dataAI: ["PyTorch", "TensorFlow", "scikit-learn", "Pandas", "NumPy", "Keras"],
+    frameworks: ["Next.js", "React", "Svelte", "Angular", "Django", "NestJS", "Spring Boot", "FastAPI", "Rails", "GraphQL", "jQuery", "Express", "Koa", "Axios", "Redux", "Prisma", "React Query", "Sinatra", "Streamlit"],
+    dataAI: ["PyTorch", "TensorFlow", "scikit-learn", "Pandas", "NumPy", "Keras", "Polars", "Qiskit", "Bokeh", "Seaborn", "Matplotlib", "LLMs", "NLP", "Plotly", "NLTK"],
     databases: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Firebase", "Supabase"],
-    tools: ["Docker", "Kubernetes", "Jenkins", "Git", "AWS", "Azure", "Linux", "Unity", "Neovim"],
-    security: ["Wireshark", "Burp Suite", "Metasploit", "Kalilinux"]
+    tools: ["Jenkins", "Git", "Unity", "Neovim", "Jira", "Confluence", "TOSCA", "Airtable", "SVN", "Vim"],
+    security: ["Wireshark", "Burp Suite", "Metasploit", "Kalilinux", "Nmap", "John the Ripper", "Aircrack-ng", "Snort", "BeEF", "OWASP ZAP", "hydra", "Bloodhound", "Shodan", "Maltego", "SQLMap", "LinPEAS"],
+    devOps: ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Jenkins", "Prometheus", "Ansible", "Gitlab CI/CD", "Github Actions", "Terraform"],
+    sciptingAndMath: ["Bash", "PowerShell", "Zsh", "Fish", "Batch", "awk", "sed", "grep", "MATLAB", "Octave", "Scilab", "Mathematica", "SageMath"]
   },
   education: [
     {

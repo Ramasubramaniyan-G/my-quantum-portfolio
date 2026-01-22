@@ -1,25 +1,40 @@
-  export const icon_map: Record<string, string> = {
+  export const simpleIcons: Record<string, string> = {
+    'aws': 'amazonwebservices',
+    'burp suite': 'burpsuite',
     'c#': 'csharp',
     'c++': 'cplusplus',
-    'next.js': 'nextdotjs',
-    'node.js': 'nodedotjs',
-    'reactjs': 'react',
-    'react': 'react',
-    'scikit-learn': 'scikitlearn',
-    'spring boot': 'springboot',
-    'ruby on rails': 'rubyonrails',
-    'rails': 'rubyonrails',
-    'aws': 'amazonwebservices',
-    'gcp': 'googlecloud',
-    'postgresql': 'postgresql',
-    'linux admin': 'linux',
-    'qt': 'qt',
-    'pyqt6': 'qt',
     'express': 'express',
+    'gcp': 'googlecloud',
     'go': 'go',
     'golang': 'go',
-    'unity3d': 'unity',
     'kalilinux': 'kalilinux',
-    'burp suite': 'burpsuite',
+    'linux admin': 'linux',
+    'next.js': 'nextdotjs',
+    'node.js': 'nodedotjs',
+    'postgresql': 'postgresql',
+    'pyqt6': 'qt',
+    'pyqt': 'qt',
+    'qt': 'qt',
+    'rails': 'rubyonrails',
+    'react': 'react',
+    'reactjs': 'react',
+    'ruby on rails': 'rubyonrails',
+    'scikit-learn': 'scikitlearn',
+    'spring boot': 'springboot',
+    'unity3d': 'unity',
     'wireshark': 'wireshark'
   };
+
+export const devIcons: Record<string, string> = {
+  "AWS": "amazonwebservices",
+  "Azure": "azure",
+  "C#": "csharp",
+  "Java": "java",
+  "Tailwind CSS": "tailwindcss",
+  "Tailwind": "tailwindcss",
+  "TailwindCSS": "tailwindcss",
+};
+
+export const deviconSuffix: Record<string, string> = {
+  "AWS": "-wordmark",
+}

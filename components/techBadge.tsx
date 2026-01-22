@@ -1,4 +1,3 @@
-import { icon_map } from '@/lib/icon_map';
 import { getTechIcon } from '@/utils/getTechIcon';
 
 export const TechBadge = ({ tech }: { tech: string }) => (
