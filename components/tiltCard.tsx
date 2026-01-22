@@ -1,7 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
 
 export const TiltCard = ({ children, className = "", onClick }: { children: React.ReactNode, className?: string, onClick?: () => void }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Entrance animation
+    gsap.fromTo(cardRef.current, 
+      { opacity: 0, y: 50 }, 
+      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+    );
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const card = cardRef.current;
@@ -14,7 +23,13 @@ export const TiltCard = ({ children, className = "", onClick }: { children: Reac
     const rotateX = ((y - centerY) / centerY) * -5;
     const rotateY = ((x - centerX) / centerX) * 5;
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    gsap.to(card, {
+      rotationX: rotateX,
+      rotationY: rotateY,
+      duration: 0.3,
+      ease: "power2.out",
+      transformPerspective: 1000
+    });
     card.style.setProperty('--mx', `${x}px`);
     card.style.setProperty('--my', `${y}px`);
   };
@@ -22,7 +37,12 @@ export const TiltCard = ({ children, className = "", onClick }: { children: Reac
   const handleMouseLeave = () => {
     const card = cardRef.current;
     if (card) {
-      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+      gsap.to(card, {
+        rotationX: 0,
+        rotationY: 0,
+        duration: 0.5,
+        ease: "power2.out"
+      });
     }
   };
 

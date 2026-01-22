@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { gsap } from 'gsap';
 
 /* --- ICONS --- */
 import {
@@ -57,6 +58,13 @@ export default function Portfolio() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    gsap.fromTo('.tilt-card', 
+      { opacity: 0, y: 50 }, 
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" }
+    );
   }, []);
 
   return (
@@ -221,7 +229,7 @@ export default function Portfolio() {
                   <Briefcase size={20} />
                 </div>
 
-                <TiltCard className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-2xl p-8 hover:border-cyan-500/30">
+                <TiltCard className="tilt-card bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-2xl p-8 hover:border-cyan-500/30">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
                     <div>
                       <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">{job.role}</h3>
@@ -272,7 +280,7 @@ export default function Portfolio() {
                 project.size === 'medium' ? 'md:col-span-2' : 'md:col-span-1';
 
               return (
-                <TiltCard key={idx} className={`${spanClass} flex flex-col justify-between bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-3xl p-8 hover:border-purple-500/30 group`}>
+                <TiltCard key={idx} className={`${spanClass} tilt-card flex flex-col justify-between bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-3xl p-8 hover:border-purple-500/30 group`}>
                   <div>
                     <div className="flex justify-between items-start mb-4">
                       <div className="p-2 rounded-lg bg-white/5 text-purple-400 group-hover:text-white group-hover:bg-purple-500 transition-all duration-300">
